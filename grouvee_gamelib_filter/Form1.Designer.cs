@@ -45,6 +45,7 @@
             textBox1.ScrollBars = ScrollBars.Horizontal;
             textBox1.Size = new Size(701, 426);
             textBox1.TabIndex = 0;
+            textBox1.TabStop = false;
             // 
             // numericUpDown1
             // 
