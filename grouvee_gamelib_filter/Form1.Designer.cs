@@ -28,24 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox1 = new TextBox();
             numericUpDown1 = new NumericUpDown();
             label1 = new Label();
             panel1 = new Panel();
+            panel2 = new Panel();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(12, 12);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.ScrollBars = ScrollBars.Horizontal;
-            textBox1.Size = new Size(701, 426);
-            textBox1.TabIndex = 0;
-            textBox1.TabStop = false;
             // 
             // numericUpDown1
             // 
@@ -76,14 +65,23 @@
             panel1.Size = new Size(128, 54);
             panel1.TabIndex = 3;
             // 
+            // panel2
+            // 
+            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            panel2.AutoScroll = true;
+            panel2.Location = new Point(12, 12);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(701, 525);
+            panel2.TabIndex = 4;
+            // 
             // Form1
             // 
             AllowDrop = true;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(848, 450);
+            ClientSize = new Size(848, 549);
+            Controls.Add(panel2);
             Controls.Add(panel1);
-            Controls.Add(textBox1);
             Name = "Form1";
             Text = "Form1";
             DragDrop += Form1_DragDrop;
@@ -92,14 +90,12 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
-        private TextBox textBox1;
         private NumericUpDown numericUpDown1;
         private Label label1;
         private Panel panel1;
+        private Panel panel2;
     }
 }

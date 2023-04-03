@@ -21,6 +21,8 @@ namespace grouvee_gamelib_filter
             InitializeComponent();
 
             RefreshInfo();
+
+            MinimumSize = Size;
         }
 
         private void Form1_DragEnter(object sender, DragEventArgs e)
@@ -165,7 +167,7 @@ namespace grouvee_gamelib_filter
         {
             LoadFromDisk();
 
-            textBox1.Clear();
+            panel2.Controls.Clear();
 
             foreach (Entry entry in entries)
             {
@@ -174,10 +176,18 @@ namespace grouvee_gamelib_filter
                     continue;
                 }
 
-                textBox1.Text += entry.game_name;
-                textBox1.Text += " | Started: " + (IsValidDate(entry.date_started) ? entry.date_started : "N/A");
-                textBox1.Text += " | Finished: " + (IsValidDate(entry.date_finished) ? entry.date_finished : "N/A");
-                textBox1.Text += Environment.NewLine;
+                UserControl1 control = new UserControl1();
+                string game_name = entry.game_name;
+                string date_started = (IsValidDate(entry.date_started) ? entry.date_started.ToString() : "N/A");
+                string date_finished = (IsValidDate(entry.date_finished) ? entry.date_finished.ToString() : "N/A");
+
+                control.label1.Text = $"{game_name} ({date_started}-{date_finished})";
+
+                int count = panel2.Controls.Count;
+                Point location = new Point(control.Location.X, 0);
+                location.Y = count * control.Size.Height;
+                control.Location = location;
+                panel2.Controls.Add(control);
             }
         }
 
