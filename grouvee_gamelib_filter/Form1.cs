@@ -178,10 +178,23 @@ namespace grouvee_gamelib_filter
 
                 UserControl1 control = new UserControl1();
                 string game_name = entry.game_name;
-                string date_started = (IsValidDate(entry.date_started) ? entry.date_started.ToString() : "N/A");
-                string date_finished = (IsValidDate(entry.date_finished) ? entry.date_finished.ToString() : "N/A");
+                string date_started = (IsValidDate(entry.date_started) ? entry.date_started.ToString() : "");
+                string date_finished = (IsValidDate(entry.date_finished) ? entry.date_finished.ToString() : "");
 
-                control.label1.Text = $"{game_name} ({date_started}-{date_finished})";
+                control.label1.Text = $"{game_name}";
+
+                if (date_started.Length != 0 && date_finished.Length != 0 && date_started != date_finished)
+                {
+                    control.label2.Text = $"({date_started}-{date_finished})";
+                }
+                else if (date_started.Length != 0)
+                {
+                    control.label2.Text = $"({date_started})";
+                }
+                else
+                {
+                    control.label2.Text = $"({date_finished})";
+                }
 
                 int count = panel2.Controls.Count;
                 Point location = new Point(control.Location.X, 0);
