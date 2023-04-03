@@ -20,9 +20,17 @@ namespace grouvee_gamelib_filter
         {
             InitializeComponent();
 
+            comboBox1.Items.Add(GetDefaultFilter());
+            comboBox1.SelectedIndex = 0;
+
             RefreshInfo();
 
             MinimumSize = Size;
+        }
+
+        private string GetDefaultFilter()
+        {
+            return "None";
         }
 
         private void Form1_DragEnter(object sender, DragEventArgs e)
@@ -127,14 +135,11 @@ namespace grouvee_gamelib_filter
 
         private bool PassesFilter(int date_started, int date_finished)
         {
-            if (numericUpDown1.Value != numericUpDown1.Minimum)
-            {
-                if (numericUpDown1.Value != date_started && numericUpDown1.Value != date_finished)
-                {
-                    return false;
-                }
-            }
-            return true;
+            if (comboBox1.SelectedIndex == 0)
+                return true;
+
+            int selectedItem = (int)comboBox1.SelectedItem;
+            return selectedItem == date_started || selectedItem == date_finished;
         }
 
         private string GetPathToTempData()
@@ -166,6 +171,30 @@ namespace grouvee_gamelib_filter
         private void RefreshInfo()
         {
             LoadFromDisk();
+
+            SortedSet<int> years = new SortedSet<int>();
+            foreach (Entry entry in entries)
+            {
+                if (IsValidDate(entry.date_started))
+                {
+                    years.Add(entry.date_started);
+                }
+                if (IsValidDate(entry.date_finished))
+                {
+                    years.Add(entry.date_finished);
+                }
+            }
+
+            var previousSelection = comboBox1.SelectedItem;
+            comboBox1.Items.Clear();
+            comboBox1.Items.Add(GetDefaultFilter());
+            comboBox1.SelectedIndexChanged -= comboBox1_SelectedIndexChanged;
+            foreach (int year in years)
+            {
+                comboBox1.Items.Add(year);
+            }
+            comboBox1.SelectedItem = previousSelection;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
 
             panel2.Controls.Clear();
 
@@ -204,7 +233,7 @@ namespace grouvee_gamelib_filter
             }
         }
 
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             RefreshInfo();
         }

@@ -28,24 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            numericUpDown1 = new NumericUpDown();
+            panel2 = new Panel();
+            comboBox1 = new ComboBox();
             label1 = new Label();
             panel1 = new Panel();
-            panel2 = new Panel();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
-            // numericUpDown1
+            // panel2
             // 
-            numericUpDown1.Location = new Point(0, 18);
-            numericUpDown1.Maximum = new decimal(new int[] { 2100, 0, 0, 0 });
-            numericUpDown1.Minimum = new decimal(new int[] { 2010, 0, 0, 0 });
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(120, 23);
-            numericUpDown1.TabIndex = 1;
-            numericUpDown1.Value = new decimal(new int[] { 2010, 0, 0, 0 });
-            numericUpDown1.ValueChanged += numericUpDown1_ValueChanged;
+            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            panel2.AutoScroll = true;
+            panel2.Location = new Point(12, 12);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(701, 525);
+            panel2.TabIndex = 4;
+            // 
+            // comboBox1
+            // 
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(0, 18);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(121, 23);
+            comboBox1.TabIndex = 5;
             // 
             // label1
             // 
@@ -58,21 +64,12 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(comboBox1);
             panel1.Controls.Add(label1);
-            panel1.Controls.Add(numericUpDown1);
             panel1.Location = new Point(719, 12);
             panel1.Name = "panel1";
             panel1.Size = new Size(128, 54);
             panel1.TabIndex = 3;
-            // 
-            // panel2
-            // 
-            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            panel2.AutoScroll = true;
-            panel2.Location = new Point(12, 12);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(701, 525);
-            panel2.TabIndex = 4;
             // 
             // Form1
             // 
@@ -86,16 +83,15 @@
             Text = "Form1";
             DragDrop += Form1_DragDrop;
             DragEnter += Form1_DragEnter;
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
-        private NumericUpDown numericUpDown1;
+        private Panel panel2;
+        private ComboBox comboBox1;
         private Label label1;
         private Panel panel1;
-        private Panel panel2;
     }
 }
