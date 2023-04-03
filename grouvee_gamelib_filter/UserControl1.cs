@@ -17,14 +17,14 @@ namespace grouvee_gamelib_filter
         {
             InitializeComponent();
 
-            yearLabelOffset = label2.Location.X - (label1.Location.X + label1.Width);
+            yearLabelOffset = gameYearLabel.Location.X - (gameNameLabel.Location.X + gameNameLabel.Width);
         }
 
         private void label1_SizeChanged(object sender, EventArgs e)
         {
-            Point location = new Point(0, label2.Location.Y);
-            location.X = label1.Location.X + label1.Width + yearLabelOffset;
-            label2.Location = location;
+            Point location = new Point(0, gameYearLabel.Location.Y);
+            location.X = gameNameLabel.Location.X + gameNameLabel.Width + yearLabelOffset;
+            gameYearLabel.Location = location;
         }
     }
 }

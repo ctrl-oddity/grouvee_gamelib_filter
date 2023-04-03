@@ -1,6 +1,6 @@
 ﻿namespace grouvee_gamelib_filter
 {
-    partial class Form1
+    partial class MainWindow
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,70 +28,70 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel2 = new Panel();
-            comboBox1 = new ComboBox();
-            label1 = new Label();
-            panel1 = new Panel();
-            panel1.SuspendLayout();
+            gameInfoPanel = new Panel();
+            yearFilterComboBox = new ComboBox();
+            yearFilterLabel = new Label();
+            yearFilterPanel = new Panel();
+            yearFilterPanel.SuspendLayout();
             SuspendLayout();
             // 
-            // panel2
+            // gameInfoPanel
             // 
-            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            panel2.AutoScroll = true;
-            panel2.Location = new Point(12, 12);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(701, 525);
-            panel2.TabIndex = 4;
+            gameInfoPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            gameInfoPanel.AutoScroll = true;
+            gameInfoPanel.Location = new Point(12, 12);
+            gameInfoPanel.Name = "gameInfoPanel";
+            gameInfoPanel.Size = new Size(701, 525);
+            gameInfoPanel.TabIndex = 4;
             // 
-            // comboBox1
+            // yearFilterComboBox
             // 
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(0, 18);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 23);
-            comboBox1.TabIndex = 5;
+            yearFilterComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            yearFilterComboBox.FormattingEnabled = true;
+            yearFilterComboBox.Location = new Point(0, 18);
+            yearFilterComboBox.Name = "yearFilterComboBox";
+            yearFilterComboBox.Size = new Size(121, 23);
+            yearFilterComboBox.TabIndex = 5;
             // 
-            // label1
+            // yearFilterLabel
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(0, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(67, 15);
-            label1.TabIndex = 2;
-            label1.Text = "Year Played";
+            yearFilterLabel.AutoSize = true;
+            yearFilterLabel.Location = new Point(0, 0);
+            yearFilterLabel.Name = "yearFilterLabel";
+            yearFilterLabel.Size = new Size(67, 15);
+            yearFilterLabel.TabIndex = 2;
+            yearFilterLabel.Text = "Year Played";
             // 
-            // panel1
+            // yearFilterPanel
             // 
-            panel1.Controls.Add(comboBox1);
-            panel1.Controls.Add(label1);
-            panel1.Location = new Point(719, 12);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(128, 54);
-            panel1.TabIndex = 3;
+            yearFilterPanel.Controls.Add(yearFilterComboBox);
+            yearFilterPanel.Controls.Add(yearFilterLabel);
+            yearFilterPanel.Location = new Point(719, 12);
+            yearFilterPanel.Name = "yearFilterPanel";
+            yearFilterPanel.Size = new Size(128, 54);
+            yearFilterPanel.TabIndex = 3;
             // 
-            // Form1
+            // MainWindow
             // 
             AllowDrop = true;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(848, 549);
-            Controls.Add(panel2);
-            Controls.Add(panel1);
-            Name = "Form1";
-            Text = "Form1";
+            Controls.Add(gameInfoPanel);
+            Controls.Add(yearFilterPanel);
+            Name = "MainWindow";
+            Text = "Grouvee Filter";
             DragDrop += Form1_DragDrop;
             DragEnter += Form1_DragEnter;
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            yearFilterPanel.ResumeLayout(false);
+            yearFilterPanel.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
-        private Panel panel2;
-        private ComboBox comboBox1;
-        private Label label1;
-        private Panel panel1;
+        private Panel gameInfoPanel;
+        private ComboBox yearFilterComboBox;
+        private Label yearFilterLabel;
+        private Panel yearFilterPanel;
     }
 }

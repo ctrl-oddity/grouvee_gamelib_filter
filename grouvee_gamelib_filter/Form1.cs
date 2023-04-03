@@ -5,7 +5,7 @@ using System.Drawing.Drawing2D;
 
 namespace grouvee_gamelib_filter
 {
-    public partial class Form1 : Form
+    public partial class MainWindow : Form
     {
         private struct Entry
         {
@@ -16,12 +16,12 @@ namespace grouvee_gamelib_filter
 
         List<Entry> entries = new List<Entry>();
 
-        public Form1()
+        public MainWindow()
         {
             InitializeComponent();
 
-            comboBox1.Items.Add(GetDefaultFilter());
-            comboBox1.SelectedIndex = 0;
+            yearFilterComboBox.Items.Add(GetDefaultFilter());
+            yearFilterComboBox.SelectedIndex = 0;
 
             RefreshInfo();
 
@@ -135,10 +135,10 @@ namespace grouvee_gamelib_filter
 
         private bool PassesFilter(int date_started, int date_finished)
         {
-            if (comboBox1.SelectedIndex == 0)
+            if (yearFilterComboBox.SelectedIndex == 0)
                 return true;
 
-            int selectedItem = (int)comboBox1.SelectedItem;
+            int selectedItem = (int)yearFilterComboBox.SelectedItem;
             return selectedItem == date_started || selectedItem == date_finished;
         }
 
@@ -185,18 +185,18 @@ namespace grouvee_gamelib_filter
                 }
             }
 
-            var previousSelection = comboBox1.SelectedItem;
-            comboBox1.Items.Clear();
-            comboBox1.Items.Add(GetDefaultFilter());
-            comboBox1.SelectedIndexChanged -= comboBox1_SelectedIndexChanged;
+            var previousSelection = yearFilterComboBox.SelectedItem;
+            yearFilterComboBox.Items.Clear();
+            yearFilterComboBox.Items.Add(GetDefaultFilter());
+            yearFilterComboBox.SelectedIndexChanged -= comboBox1_SelectedIndexChanged;
             foreach (int year in years)
             {
-                comboBox1.Items.Add(year);
+                yearFilterComboBox.Items.Add(year);
             }
-            comboBox1.SelectedItem = previousSelection;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            yearFilterComboBox.SelectedItem = previousSelection;
+            yearFilterComboBox.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
 
-            panel2.Controls.Clear();
+            gameInfoPanel.Controls.Clear();
 
             foreach (Entry entry in entries)
             {
@@ -210,26 +210,26 @@ namespace grouvee_gamelib_filter
                 string date_started = (IsValidDate(entry.date_started) ? entry.date_started.ToString() : "");
                 string date_finished = (IsValidDate(entry.date_finished) ? entry.date_finished.ToString() : "");
 
-                control.label1.Text = $"{game_name}";
+                control.gameNameLabel.Text = $"{game_name}";
 
                 if (date_started.Length != 0 && date_finished.Length != 0 && date_started != date_finished)
                 {
-                    control.label2.Text = $"({date_started}-{date_finished})";
+                    control.gameYearLabel.Text = $"({date_started}-{date_finished})";
                 }
                 else if (date_started.Length != 0)
                 {
-                    control.label2.Text = $"({date_started})";
+                    control.gameYearLabel.Text = $"({date_started})";
                 }
                 else
                 {
-                    control.label2.Text = $"({date_finished})";
+                    control.gameYearLabel.Text = $"({date_finished})";
                 }
 
-                int count = panel2.Controls.Count;
+                int count = gameInfoPanel.Controls.Count;
                 Point location = new Point(control.Location.X, 0);
                 location.Y = count * control.Size.Height;
                 control.Location = location;
-                panel2.Controls.Add(control);
+                gameInfoPanel.Controls.Add(control);
             }
         }
 
