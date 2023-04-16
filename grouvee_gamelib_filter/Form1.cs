@@ -2,6 +2,7 @@ using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Diagnostics;
 using System.Drawing.Drawing2D;
+using System.Net;
 
 namespace grouvee_gamelib_filter
 {
@@ -10,6 +11,7 @@ namespace grouvee_gamelib_filter
         private struct Entry
         {
             public string game_name { get; set; }
+            public string game_cover_image { get; set; }
             public int date_started { get; set; }
             public int date_finished { get; set; }
         }
@@ -109,6 +111,20 @@ namespace grouvee_gamelib_filter
                 entry.game_name = line[nameIndex];
                 entry.date_started = date_started.Year;
                 entry.date_finished = date_finished.Year;
+
+                using (WebClient webClient = new WebClient())
+                {
+                    int urlIndex = -1;
+                    headerToIndex.TryGetValue("url", out urlIndex);
+                    string url = line[urlIndex];
+                    string pageContent = webClient.DownloadString(url);
+                    // TODO: Should be regex
+                    string searchString = "<img itemprop=\"image\" src=\"";
+                    int imageSrcIndex = pageContent.IndexOf(searchString) + searchString.Length;
+                    int imageSrcIndexEnd = pageContent.IndexOf("\">", imageSrcIndex);
+                    string imageSrc = pageContent.Substring(imageSrcIndex, imageSrcIndexEnd - imageSrcIndex);
+                    entry.game_cover_image = imageSrc;
+                }
 
                 toDiskEntries.Add(entry);
             }
@@ -223,6 +239,14 @@ namespace grouvee_gamelib_filter
                 else
                 {
                     control.gameYearLabel.Text = $"({date_finished})";
+                }
+
+                if (entry.game_cover_image != null)
+                {
+                    using (WebClient webClient = new WebClient())
+                    {
+                        control.gameCoverPictureBox.Load(entry.game_cover_image);
+                    }
                 }
 
                 int count = gameInfoPanel.Controls.Count;

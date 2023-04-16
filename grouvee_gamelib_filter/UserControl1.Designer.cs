@@ -30,6 +30,8 @@
         {
             gameNameLabel = new Label();
             gameYearLabel = new Label();
+            gameCoverPictureBox = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)gameCoverPictureBox).BeginInit();
             SuspendLayout();
             // 
             // gameNameLabel
@@ -55,15 +57,27 @@
             gameYearLabel.Text = "(2022-2023)";
             gameYearLabel.UseMnemonic = false;
             // 
+            // gameCoverPictureBox
+            // 
+            gameCoverPictureBox.BackColor = Color.Black;
+            gameCoverPictureBox.Location = new Point(3, 32);
+            gameCoverPictureBox.Name = "gameCoverPictureBox";
+            gameCoverPictureBox.Size = new Size(256, 256);
+            gameCoverPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+            gameCoverPictureBox.TabIndex = 2;
+            gameCoverPictureBox.TabStop = false;
+            // 
             // UserControl1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
+            Controls.Add(gameCoverPictureBox);
             Controls.Add(gameYearLabel);
             Controls.Add(gameNameLabel);
             Name = "UserControl1";
-            Size = new Size(171, 29);
+            Size = new Size(262, 291);
+            ((System.ComponentModel.ISupportInitialize)gameCoverPictureBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -72,5 +86,6 @@
 
         public Label gameNameLabel;
         public Label gameYearLabel;
+        public PictureBox gameCoverPictureBox;
     }
 }
